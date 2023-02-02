@@ -3,17 +3,18 @@
   <head>
     <title>Carrère active par nature</title>
     <style>
-    .myDiv {
-      width : 100%;
-      margin: 0 auto;
-    }
-    html, body, .myDiv {
-      height: 100%;
-    }
+      .myDiv {
+        width : 100%;
+        margin: 0 auto;
+      }
+      html, body, .myDiv {
+        height: 100%;
+      }
     </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- Import PDF.js Express Viewer as a script tag from the lib folder using a relative path -->
+    <script src='/lib/webviewer.min.js'></script>
   </head>
-  <!-- Import PDF.js Express Viewer as a script tag from the lib folder using a relative path -->
-  <script src='/lib/webviewer.min.js'></script>
 
   <body>
     <div id='viewer' class="myDiv"></div>
