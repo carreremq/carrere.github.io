@@ -2,29 +2,44 @@
 <html>
   <head>
     <title>Carrère active par nature</title>
+    <style>
+    .myDiv {
+      width : 100%;
+      margin: 0 auto;
+    }
+    html, body, .myDiv {
+      height: 100%;
+    }
+    </style>
   </head>
+  <!-- Import PDF.js Express Viewer as a script tag from the lib folder using a relative path -->
+  <script src='/lib/webviewer.min.js'></script>
+
   <body>
-    <h1 style="font-family: Arial; text-align: center">Carrère, une zone d'activités durable, écologique et stratégique</h1>
-    <!--iframe src="/uploads/1. Présentation_Carrere_MD_2023.pdf#toolbar=0" width="100%" height="500px">
-    </iframe-->
-    <iframe src="https://docs.google.com/viewer?url=http://www.carrere.mq/uploads/1. Présentation_Carrere_MD_2023.pdf&embedded=true" style="width:100%; height:650px;" frameborder="0"></iframe>
-    <!--iframe src="/uploads/2. Carrere_Fiches_exemplarite_MD_2023.pdf#toolbar=0" width="100%" height="500px">
-    </iframe-->
-    <iframe src="https://docs.google.com/viewer?url=http://www.carrere.mq/uploads/2. Carrere_Fiches_exemplarite_MD_2023.pdf&embedded=true" style="width:100%; height:650px;" frameborder="0"></iframe>
-    <!--iframe src="/uploads/3. Carrere_Fiches_ commerciale_MD_2023.pdf#toolbar=0" width="100%" height="500px">
-    </iframe-->
-    <iframe src="https://docs.google.com/viewer?url=http://www.carrere.mq/uploads/3. Carrere_Fiches_ commerciale_MD_2023.pdf&embedded=true" style="width:100%; height:650px;" frameborder="0"></iframe>
-    <!--iframe src="/uploads/4. Carrere_Fiche_Parkings et circulations_MD_2023.pdf#toolbar=0" width="100%" height="500px">
-    </iframe-->
-    <iframe src="https://docs.google.com/viewer?url=http://www.carrere.mq/uploads/4. Carrere_Fiche_Parkings et circulations_MD_2023.pdf&embedded=true" style="width:100%; height:650px;" frameborder="0"></iframe>
-    <!--iframe src="/uploads/5. Carrere_Fiche_surfaces disponibles_MD_2023.pdf#toolbar=0" width="100%" height="500px">
-    </iframe-->
-    <iframe src="https://docs.google.com/viewer?url=http://www.carrere.mq/uploads/5. Carrere_Fiche_surfaces disponibles_MD_2023.pdf&embedded=true" style="width:100%; height:650px;" frameborder="0"></iframe>
-    <!--iframe src="/uploads/6. Carrere_Fiche_plans et implantations_MD_2023.pdf#toolbar=0" width="100%" height="500px">
-    </iframe-->
-    <iframe src="https://docs.google.com/viewer?url=http://www.carrere.mq/uploads/6. Carrere_Fiche_plans et implantations_MD_2023.pdf&embedded=true" style="width:100%; height:650px;" frameborder="0"></iframe>
-    <!--iframe src="/uploads/7. Carrere_Fiches_riverain_MD_2023.pdf#toolbar=0" width="100%" height="500px">
-    </iframe-->
-    <iframe src="https://docs.google.com/viewer?url=http://www.carrere.mq/uploads/7. Carrere_Fiches_riverain_MD_2023.pdf&embedded=true" style="width:100%; height:650px;" frameborder="0"></iframe>
+    <div id='viewer' class="myDiv"></div>
+    <script>
+    WebViewer({
+      path: '/lib', // path to the PDF.js Express'lib' folder on your server
+      licenseKey: 'MrHEP4IcgFf2dY0w0JWy',
+      initialDoc: '/uploads/ecoparc_martinique_carrere.pdf',
+    }, document.getElementById('viewer'))
+    .then(instance => {
+      instance.UI.setLanguage('fr');
+
+      // now you can access APIs through the WebViewer instance
+      const { Core, UI } = instance;
+
+      // adding an event listener for when a document is loaded
+      Core.documentViewer.addEventListener('documentLoaded', () => {
+        console.log('document loaded');
+      });
+
+      // adding an event listener for when the page number has changed
+      Core.documentViewer.addEventListener('pageNumberUpdated', (pageNumber) => {
+        console.log(`Page number is: ${pageNumber}`);
+      });
+    });
+  </script>
+
   </body>
 </html>
